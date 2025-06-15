@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+    id 'application'                       // pour ./gradlew run
+    id 'org.openjfx.javafxplugin' version '0.1.0'  // plugin JavaFX
+}
+
+group   = 'com.alertfire'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    // JavaFX 24 requiert JDK 22 ou plus (JDK 24 recommandé)
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    // Les modules JavaFX seront ajoutés automatiquement par le plugin
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+application {
+    mainClass = 'com.alertfire.App'     // ⚠️ Mets ici ta vraie classe Main
+}
+
+javafx {
+    version = '21'                  // version JavaFX
+    modules = ['javafx.controls',   // ajoute/retire selon tes besoins
+               'javafx.fxml']
+}
+
+test {
+    useJUnitPlatform()
+}
